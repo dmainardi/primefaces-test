@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <title>PrimeFaces Test</title>
@@ -11,52 +11,23 @@
     </h:head>
     <h:body>
         <h:form id="form">
-            <h1>Table</h1>
-            <p>Try to edit last line and use TAB to move from cells</p>
-            <p>A TAB after last cell rise the NumberFormatException (check error log)</p>
-            <p:dataTable id="carTable" var="car" value="#{dtView.cars}" editable="true" editMode="cell">
-                <f:facet name="header">
-                    Cell Editing with Click
-                </f:facet>
-
-                <p:ajax event="cellEditInit" listener="#{dtView.onCellEditInt}" />
-
-                <p:column headerText="Id">
-                    <p:cellEditor>
-                        <f:facet name="output"><h:outputText value="#{car.id}" /></f:facet>
-                        <f:facet name="input"><p:inputText id="modelInput" value="#{car.id}" style="width:96%"/></f:facet>
-                    </p:cellEditor>
-                </p:column>
-
-                <p:column headerText="Year">
-                    <p:cellEditor>
-                        <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
-                        <f:facet name="input"><p:inputText value="#{car.year}" style="width:96%" label="Year"/></f:facet>
-                    </p:cellEditor>
-                </p:column>
-
-                <p:column headerText="Brand">
-                    <p:cellEditor>
-                        <f:facet name="output"><h:outputText value="#{car.brand}" /></f:facet>
-                        <f:facet name="input">
-                            <h:selectOneMenu value="#{car.brand}" style="width:100%">
-                                <f:selectItems value="#{dtView.brands}" var="man" itemLabel="#{man}" itemValue="#{man}" />
-                            </h:selectOneMenu>
-                        </f:facet>
-                    </p:cellEditor>
-                </p:column>
-
-                <p:column headerText="Color">
-                    <p:cellEditor>
-                        <f:facet name="output"><h:outputText value="#{car.color}" /></f:facet>
-                        <f:facet name="input">
-                            <h:selectOneMenu value="#{car.color}" style="width:100%">
-                                <f:selectItems value="#{dtView.colors}" var="color" itemLabel="#{color}" itemValue="#{color}" />
-                            </h:selectOneMenu>
-                        </f:facet>
-                    </p:cellEditor>
-                </p:column>
-            </p:dataTable>
+            <h1>Sticky header table</h1>
+            <p>Header is not sticky when table is inside a tabView</p>
+            <p:tabView>
+                <p:tab title="Test">
+                    <ui:include src="stickyHeaderTable.xhtml" />
+                </p:tab>
+            </p:tabView>
+            
+            <p>Same table (but not inside a tabView)</p>
+            <ui:include src="stickyHeaderTable.xhtml" />
+            
+            <p>Again, inside a tabView</p>
+            <p:tabView>
+                <p:tab title="Test">
+                    <ui:include src="stickyHeaderTable.xhtml" />
+                </p:tab>
+            </p:tabView>
         </h:form>
     </h:body>
 </html>

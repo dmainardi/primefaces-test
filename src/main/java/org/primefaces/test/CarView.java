@@ -11,7 +11,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.primefaces.event.CellEditEvent;
 
 /**
  *
@@ -28,10 +27,7 @@ public class CarView implements Serializable {
 
     @PostConstruct
     public void init() {
-        cars = service.createCars(10);
-    }
-
-    public void onCellEditInt(CellEditEvent event) {
+        cars = service.createCars(40);
     }
 
     public List<Car> getCars() {
