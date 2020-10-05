@@ -7,22 +7,15 @@
     <h:head>
         <title>PrimeFaces Test</title>
         <h:outputScript name="test.js" />
-        <h:outputScript name="fix.js" />
     </h:head>
     <h:body>
         <h:form id="form">
             <h1>Sticky header table</h1>
-            <p>Header is not sticky when table is inside a tabView</p>
-            <p:tabView>
-                <p:tab title="Test">
-                    <ui:include src="stickyHeaderTable.xhtml" />
-                </p:tab>
-            </p:tabView>
             
-            <p>Same table (but not inside a tabView)</p>
+            <p>Header is sticky as defined</p>
             <ui:include src="stickyHeaderTable.xhtml" />
             
-            <p>Again, inside a tabView</p>
+            <p>Header is not sticky when (same) table is inside a tabView</p>
             <p:tabView>
                 <p:tab title="Test">
                     <ui:include src="stickyHeaderTable.xhtml" />
