@@ -8,29 +8,21 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <style type="text/css">
-            .ui-paginator a {
-                margin-right: 5px;
-            }
-        </style>
-
 
         <h:form>
+            <div style="float:right;padding-top: 5px;">
+                <h:commandLink value="Excel legacy">
+                    <p:dataExporter type="xls" target="tbl" fileName="cars" />
+                </h:commandLink>
+
+                <h:commandLink value="Excel">
+                    <p:dataExporter type="xlsxstream" target="tbl" fileName="cars" />
+                </h:commandLink>
+            </div>
+
             <p:dataTable id="tbl" var="car" value="#{carView.cars}"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                          paginator="true" rows="10" style="margin-bottom:20px">
-
-                <f:facet name="{Exporters}">
-                    <div style="float:right;padding-top: 5px;">
-                        <h:commandLink value="Excel legacy">
-                            <p:dataExporter type="xls" target="tbl" fileName="cars" />
-                        </h:commandLink>
-
-                        <h:commandLink value="Excel">
-                            <p:dataExporter type="xlsxstream" target="tbl" fileName="cars" />
-                        </h:commandLink>
-                    </div>
-                </f:facet>
 
                 <p:column>
                     <f:facet name="header">
