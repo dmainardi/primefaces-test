@@ -8,6 +8,7 @@ package org.primefaces.test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
@@ -23,6 +24,10 @@ public class CarService {
     private final static String[] COLORS;
      
     private final static String[] BRANDS;
+    
+
+    private final static int MIN_MILEAGE = 950;
+    private final static int MAX_MILEAGE = 10000;
      
     static {
         COLORS = new String[10];
@@ -53,7 +58,7 @@ public class CarService {
     public List<Car> createCars(int size) {
         List<Car> list = new ArrayList<>();
         for(int i = 0 ; i < size ; i++) {
-            list.add(new Car(getRandomId(), getRandomBrand(), getRandomYear(), getRandomColor(), getRandomPrice(), getRandomSoldState()));
+            list.add(new Car(getRandomId(), getRandomBrand(), getRandomYear(), getRandomColor(), getRandomPrice(), getRandomSoldState(), getRandomMileage()));
         }
          
         return list;
@@ -81,6 +86,11 @@ public class CarService {
      
     public boolean getRandomSoldState() {
         return Math.random() > 0.5;
+    }
+    
+    public long getRandomMileage() {
+        Random r = new Random();
+        return r.nextInt(MAX_MILEAGE - MIN_MILEAGE) + MIN_MILEAGE;
     }
  
     public List<String> getColors() {

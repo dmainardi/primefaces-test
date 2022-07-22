@@ -16,7 +16,7 @@ import javax.inject.Named;
  *
  * @author Davide Mainardi <ingmainardi at live.com>
  */
-@Named(value = "dtView")
+@Named
 @ViewScoped
 public class CarView implements Serializable {
 

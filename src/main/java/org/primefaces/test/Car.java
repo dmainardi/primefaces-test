@@ -16,17 +16,19 @@ public class Car {
     public String color;
     public int price;
     public boolean sold;
+    public long mileage;
 
     public Car() {
     }
 
-    public Car(String id, String brand, int year, String color, int price, boolean sold) {
+    public Car(String id, String brand, int year, String color, int price, boolean sold, long mileage) {
         this.id = id;
         this.brand = brand;
         this.year = year;
         this.color = color;
         this.price = price;
         this.sold = sold;
+        this.mileage = mileage;
     }
 
     public String getId() {
@@ -75,6 +77,14 @@ public class Car {
 
     public void setSold(boolean sold) {
         this.sold = sold;
+    }
+
+    public long getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(long mileage) {
+        this.mileage = mileage;
     }
     
 }
