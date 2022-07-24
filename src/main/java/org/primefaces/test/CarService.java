@@ -26,8 +26,8 @@ public class CarService {
     private final static String[] BRANDS;
     
 
-    private final static int MIN_MILEAGE = 950;
-    private final static int MAX_MILEAGE = 10000;
+    private final static int MIN_H_MILEAGE = 10;
+    private final static int MAX_H_MILEAGE = 100;
      
     static {
         COLORS = new String[10];
@@ -90,7 +90,7 @@ public class CarService {
     
     public long getRandomMileage() {
         Random r = new Random();
-        return r.nextInt(MAX_MILEAGE - MIN_MILEAGE) + MIN_MILEAGE;
+        return (r.nextInt(MAX_H_MILEAGE - MIN_H_MILEAGE) + MIN_H_MILEAGE) * 100;
     }
  
     public List<String> getColors() {
