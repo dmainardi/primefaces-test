@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="jakarta.faces.facelets"
-      xmlns:f="jakarta.faces.core"
       xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
       xmlns:p="primefaces">
 
     <h:head>
@@ -12,10 +11,60 @@
     </h:head>
     <h:body>
 
-        <h1>#{testView.string}</h1>
-        <h:form id="frmTest">
+        <div class="card">
+            <h:form>
+                <div class="flex justify-content-between">
+                    <div>
+                        <h5>Standard</h5>
+                        <p:commandButton value="XLS" styleClass="mr-2 mb-2">
+                            <p:dataExporter type="xls" target="productsTable" fileName="products"/>
+                        </p:commandButton>
 
-        </h:form>
+                        <p:commandButton value="XLSX" styleClass="mr-2 mb-2">
+                            <p:dataExporter type="xlsxstream" target="productsTable" fileName="products"/>
+                        </p:commandButton>
+                    </div>
+
+                    <div>
+                        <h5>Page Only</h5>
+                        <p:commandButton value="XLS" styleClass="mr-2 mb-2 ui-button-outlined">
+                            <p:dataExporter type="xls" target="productsTable" fileName="products" pageOnly="true"/>
+                        </p:commandButton>
+
+                        <p:commandButton value="XLSX" styleClass="mr-2 mb-2 ui-button-outlined">
+                            <p:dataExporter type="xlsxstream" target="productsTable" fileName="products" pageOnly="true"/>
+                        </p:commandButton>
+                    </div>
+                </div>
+
+                <p:dataTable id="productsTable" var="product" value="#{dataExporterView.lazyProducts}"
+                             lazy="true"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             paginator="true" rows="10" styleClass="mt-2">
+                    <p:column headerText="Code">
+                        <h:outputText value="#{product.code}"/>
+                    </p:column>
+
+                    <p:column headerText="Name">
+                        <h:outputText value="#{product.name}"/>
+                    </p:column>
+
+                    <p:column headerText="Category" styleClass="text-center">
+                        <h:outputText value="#{product.category}"/>
+                    </p:column>
+
+                    <p:column headerText="Quantity" styleClass="text-right">
+                        <h:outputText value="#{product.quantity}"/>
+                    </p:column>
+
+                    <p:column headerText="Price" styleClass="text-right">
+                        <h:outputText value="#{product.price}">
+                            <f:convertNumber type="currency" />
+                        </h:outputText>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
 
     </h:body>
 </html>
